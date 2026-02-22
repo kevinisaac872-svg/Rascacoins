@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RascaCoins</title>
+<style>
+body {
+    text-align: center;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+h1 {
+    margin-top: 20px;
+}
+.card {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    background: #1e293b;
+    border-radius: 10px;
+    line-height: 80px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.win {
+    background: green !important;
+}
+.lose {
+    background: red !important;
+}
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: gold;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
 
+<h1>🎮 RascaCoins</h1>
+<p>Elige una carta</p>
+
+<div id="game">
+    <div class="card" onclick="play(this)">?</div>
+    <div class="card" onclick="play(this)">?</div>
+    <div class="card" onclick="play(this)">?</div>
+</div>
+
+<p id="result"></p>
+
+<button onclick="window.location.href='https://t.me/TUCANAL'">
+🔥 Ganar intento extra
+</button>
+
+<script>
+let played = false;
+let winner = Math.floor(Math.random() * 3);
+
+function play(card) {
+    if (played) return;
+    played = true;
+    let cards = document.querySelectorAll(".card");
+    cards.forEach((c, index) => {
+        if (index === winner) {
+            c.classList.add("win");
+            c.innerHTML = "💰";
+        } else {
+            c.classList.add("lose");
+            c.innerHTML = "❌";
+        }
+    });
+
+    if ([...cards].indexOf(card) === winner) {
+        document.getElementById("result").innerHTML = "🎉 Ganaste 5 Rascoins";
+    } else {
+        document.getElementById("result").innerHTML = "😢 Intenta mañana";
+    }
+}
+</script>
+
+</body>
+</html>
